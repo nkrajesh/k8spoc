@@ -1,0 +1,34 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: samplek8s  
+sample:
+  message:  welcome to k8s app
+  salutation: hello hello  
+eureka:
+    instance:
+      preferIpAddress: true
+      hostname: localhost
+      metadataMap:
+        versions: v1      
+    client:
+      registerWithEureka: true
+      fetchRegistry: true
+      serviceUrl:
+        defaultZone: http://localhost:9091/eureka
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+ribbon:
+  eureka:
+    enabled: true  
+---
+spring:
+  profiles: v1v2
+eureka:
+  instance:
+    metadataMap:
+      versions: v1,v2
