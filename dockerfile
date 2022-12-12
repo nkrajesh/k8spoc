@@ -7,7 +7,7 @@ LABEL maintainer="nkrajesh@hotmail.com"
 # Add a volume pointing to /tmp
 VOLUME /tmp
 
-ENV	APP_PORT=10000
+ENV	APP_PORT=8080
 EXPOSE ${APP_PORT}
 
 # Add the application's jar to the container

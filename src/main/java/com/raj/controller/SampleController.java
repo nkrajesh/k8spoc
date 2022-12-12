@@ -1,6 +1,7 @@
 package com.raj.controller;
 
 import java.net.URISyntaxException;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -25,16 +26,10 @@ public class SampleController {
     Environment env;
  
     @RequestMapping(value= "/sample", method = RequestMethod.GET)
-    public ResponseEntity<String> addEmployee(@RequestParam String name, HttpServletRequest request) throws URISyntaxException {
+    public ResponseEntity<String> addEmployee(@RequestParam(required = false) String name, HttpServletRequest request) throws URISyntaxException {
     	String salutaton = env.getProperty("sample.salutation");
     	String msg = env.getProperty("sample.message");
-    	return new ResponseEntity<String>(salutaton+" "+name+" "+msg + " from v2.. "+request.getRemoteHost() +","+request.getRemotePort(), HttpStatus.OK);    	 
+    	return new ResponseEntity<String>(salutaton+" "+ Optional.ofNullable(name).orElse("Engineer")+" "+msg + " from v2.. "+request.getRemoteHost() +","+request.getRemotePort(), HttpStatus.OK);
     }
-    
-    @RequestMapping(value= "/sample1", method = RequestMethod.GET)
-    public ResponseEntity<String> addEmployee1(@RequestParam String name, HttpServletRequest request) throws URISyntaxException {
-    	String salutaton = env.getProperty("sample.salutation");
-    	String msg = env.getProperty("sample.message");
-    	return new ResponseEntity<String>(salutaton+" "+name+" "+msg + " from "+request.getRemoteHost() +","+request.getRemotePort(), HttpStatus.OK);    	 
-    }
+
 }
