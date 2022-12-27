@@ -6,3 +6,8 @@ spring:
 sample:
   message:  welcome to k8s app
   salutation: hello hello
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
