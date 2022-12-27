@@ -5,7 +5,7 @@ spring:
     name: samplek8s  
 sample:
   message:  welcome to k8s app
-  salutation: hello hello
+  salutation: hello
 management:
   endpoints:
     web:
